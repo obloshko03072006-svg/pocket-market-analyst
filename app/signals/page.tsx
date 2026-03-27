@@ -1,5 +1,10 @@
-import AppShell from '@/src/App'
+import { Suspense } from 'react'
+import AppShell from '../../src/App'
 
-export default function Page() {
-  return <AppShell forcedPage="signals" />
+export default function SignalsPage() {
+  return (
+    <Suspense fallback={null}>
+      <AppShell forcedPage="signals" />
+    </Suspense>
+  )
 }
