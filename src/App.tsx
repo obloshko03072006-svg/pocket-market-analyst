@@ -47,18 +47,18 @@ export default function AppShell({ forcedPage }: { forcedPage: 'home' | 'signals
       localStorage.setItem('lang', newLang)
     } catch {}
 
-    const params = new URLSearchParams(searchParams.toString())
+    const params = new URLSearchParams(searchParams?.toString() || '')
     params.set('lang', newLang)
     router.replace(`${pathname}?${params.toString()}`)
   }
 
   const goHome = () => {
-    const params = new URLSearchParams(searchParams.toString())
+    const params = new URLSearchParams(searchParams?.toString() || '')
     router.push(`/${params.toString() ? `?${params.toString()}` : ''}`)
   }
 
   const goSignals = () => {
-    const params = new URLSearchParams(searchParams.toString())
+    const params = new URLSearchParams(searchParams?.toString() || '')
     router.push(`/signals${params.toString() ? `?${params.toString()}` : ''}`)
   }
 
@@ -67,7 +67,7 @@ export default function AppShell({ forcedPage }: { forcedPage: 'home' | 'signals
       <div className="relative min-h-screen bg-slate-950">
         <Header currentPage={forcedPage} goHome={goHome} goSignals={goSignals} />
         <BackgroundChart />
-        {mounted ? forcedPage === 'home' ? <HomePage lang={lang} goSignals={goSignals} /> : <SignalPage lang={lang} /> : null}
+        {mounted ? (forcedPage === 'home' ? <HomePage lang={lang} goSignals={goSignals} /> : <SignalPage lang={lang} />) : null}
       </div>
     </LanguageContext.Provider>
   )
