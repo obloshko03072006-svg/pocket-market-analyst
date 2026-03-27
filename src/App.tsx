@@ -17,7 +17,7 @@ export default function AppShell({ forcedPage }: { forcedPage: 'home' | 'signals
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
-    const urlLang = searchParams.get('lang')
+    const urlLang = searchParams ? searchParams.get('lang') : null
 
     if (urlLang === 'ru' || urlLang === 'en') {
       setLang(urlLang)
