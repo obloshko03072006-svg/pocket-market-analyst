@@ -1,5 +1,12 @@
-import AppShell from '@/src/App'
+export const dynamic = 'force-dynamic'
 
-export default function Page() {
-  return <AppShell forcedPage="home" />
+import { Suspense } from 'react'
+import AppShell from '../../src/App'
+
+export default function SignalsPage() {
+  return (
+    <Suspense fallback={null}>
+      <AppShell forcedPage="signals" />
+    </Suspense>
+  )
 }
